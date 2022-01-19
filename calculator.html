@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" contentwidth=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+    <div>
+        <div>
+            <input id="display" type="text" style="width: 4.4cm; text-align: right;" value="0" disabled>
+        </div>
+        <div id="button">
+            <div>
+                <span>
+                    <input id="clear" type="button" style="width: 3.4cm; margin-right: 0.05cm;" value="C">
+                </span>
+                <span>
+                    <input id="divide" type="button" style="width: 1cm; margin-left: 0.05cm;" value="/">
+                </span>
+            </div>
+            <div>
+                <span>
+                    <input id="seven" type="button" style="width: 1cm; margin-right: 0.05cm;" value="7">
+                </span>
+                <span>
+                    <input id="eight" type="button" style="width: 1cm; margin-right: 0.05cm; margin-left: 0.05cm;" value="8">
+                </span>
+                <span>
+                    <input id="nine" type="button" style="width: 1cm; margin-right: 0.05cm; margin-left: 0.05cm;" value="9">
+                </span>
+                <span>
+                    <input id="multiply" type="button" style="width: 1cm; margin-left: 0.05cm;" value="*">
+                </span>
+            </div>
+            <div>
+                <span>
+                    <input id="four" type="button" style="width: 1cm; margin-right: 0.05cm;" value="4">
+                </span>
+                <span>
+                    <input id="five" type="button" style="width: 1cm; margin-right: 0.05cm; margin-left: 0.05cm;" value="5">
+                </span>
+                <span>
+                    <input id="six" type="button" style="width: 1cm; margin-right: 0.05cm; margin-left: 0.05cm;" value="6">
+                </span>
+                <span>
+                    <input id="minus" type="button" style="width: 1cm; margin-left: 0.05cm;" value="-">
+                </span>
+            </div>
+            <div>
+                <span>
+                    <input id="one" type="button" style="width: 1cm; margin-right: 0.05cm;" value="1">
+                </span>
+                <span>
+                    <input id="two" type="button" style="width: 1cm; margin-right: 0.05cm; margin-left: 0.05cm;" value="2">
+                </span>
+                <span>
+                    <input id="three" type="button" style="width: 1cm; margin-right: 0.05cm; margin-left: 0.05cm;" value="3">
+                </span>
+                <span>
+                    <input id="plus" type="button" style="width: 1cm; margin-left: 0.05cm;" value="+">
+                </span>
+            </div>
+            <div>
+                <span>
+                    <input id="zero" type="button" style="width: 2.2cm; margin-right: 0.05cm;" value="0">
+                </span>
+                <span>
+                    <input id="dot" type="button" style="width: 1cm; margin-right: 0.05cm; margin-left: 0.05cm;" value=".">
+                </span>
+                <span>
+                    <input id="equal" type="button" style="width: 1cm; margin-right: 0.05cm; margin-left: 0.05cm;" value="=">
+                </span>
+            </div>
+        </div>
+    </div>
+    <script>
+        var sumText = '';
+        //var multiplyDivideVal = '';
+        var newStart = true;
+        
+        function noBtn() {
+            if (newStart) {
+                newStart = false;
+                document.getElementById('display').value = event.target.value;
+            } else {
+                document.getElementById('display').value += event.target.value;
+            }
+        }
+
+        function dotBtn() {
+            if (document.getElementById('display').value.indexOf('.') == -1) {
+                document.getElementById('display').value += event.target.value;
+                newStart = false;
+            }
+        }
+
+        function clearBtn() {
+            document.getElementById('display').value = '0';
+            sumText = '';
+            newStart = true;
+        }
+
+        function operationBtn() {
+            sumText += document.getElementById('display').value;
+            sumText += event.target.value;
+            newStart = true;
+            console.log(sumText);
+        }
+
+        // function multiplyDivideBtn() {
+            
+        // }
+
+        function equalBtn() {
+            sumText += document.getElementById('display').value;
+            console.log(sumText);
+            document.getElementById('display').value = eval(sumText);
+            sumText = '';
+            newStart = true;
+        }
+
+        document.getElementById('zero').onclick = noBtn;
+        document.getElementById('one').onclick = noBtn;
+        document.getElementById('two').onclick = noBtn;
+        document.getElementById('three').onclick = noBtn;
+        document.getElementById('four').onclick = noBtn;
+        document.getElementById('five').onclick = noBtn;
+        document.getElementById('six').onclick = noBtn;
+        document.getElementById('seven').onclick = noBtn;
+        document.getElementById('eight').onclick = noBtn;
+        document.getElementById('nine').onclick = noBtn;
+        document.getElementById('dot').onclick = dotBtn;
+        document.getElementById('plus').onclick = operationBtn;
+        document.getElementById('minus').onclick = operationBtn;
+        document.getElementById('multiply').onclick = operationBtn;
+        document.getElementById('divide').onclick = operationBtn;
+        document.getElementById('equal').onclick = equalBtn;
+        document.getElementById('clear').onclick = clearBtn;
+    </script>
+</body>
+</html>
